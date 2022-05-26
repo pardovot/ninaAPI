@@ -155,6 +155,10 @@ namespace ninaAPI
             re = new Regex("^(Successfully connected Safety Monitor)|(Disconnected Safety Monitor)", options);
             _matchers.Add(re, new EventMatcher(NINALogEvent.NINA_SAFETY_CONNECTION_CHANGED, false, null));
 
+            // New Image Saved
+            re = new Regex("^Saving image at", options);
+            _matchers.Add(re, new EventMatcher(NINALogEvent.NINA_NEW_IMAGE, false, null));
+
             return _matchers;
         }
 

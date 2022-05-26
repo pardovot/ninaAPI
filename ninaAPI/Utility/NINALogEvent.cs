@@ -19,8 +19,9 @@ namespace ninaAPI
         public const string NINA_MF = "NINA-MF";
         public const string NINA_ERROR_AF = "NINA-ERROR-AF";
         public const string NINA_ERROR_PLATESOLVE = "NINA-ERROR-PLATESOLVE";
+        public const string NINA_NEW_IMAGE = "NINA-NEW-IMAGE";
 
-        
+
         public const string NINA_CAMERA_CONNECTION_CHANGED = "NINA-CAMERA-CONNECTION-CHANGED";
         public const string NINA_TELESCOPE_CONNECTION_CHANGED = "NINA-TELESCOPE-CONNECTION-CHANGED";
         public const string NINA_FOCUSER_CONNECTION_CHANGED = "NINA-FOCUSER-CONNECTION-CHANGED";

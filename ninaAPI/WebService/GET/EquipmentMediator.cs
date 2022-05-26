@@ -227,14 +227,21 @@ namespace ninaAPI.WebService.GET
             try
             {
                 IImageHistoryVM hist = AdvancedAPI.Controls.ImageHistory;
+                if (hist.ImageHistory.Count <= 0)
+                {
+                    response.Response = "No Images Available";
+                    return response;
+                }
                 IProfile profile = AdvancedAPI.Controls.Profile.ActiveProfile;
                 ImageHistoryPoint p = hist.ImageHistory[hist.ImageHistory.Count - 1];
                 IImageData imageData = await AdvancedAPI.Controls.ImageDataFactory.CreateFromFile(p.LocalPath, 16, false, NINA.Core.Enum.RawConverterEnum.FREEIMAGE);
                 IRenderedImage renderedImage = imageData.RenderImage();
 
+
                 renderedImage = await renderedImage.Stretch(profile.ImageSettings.AutoStretchFactor, profile.ImageSettings.BlackClipping, profile.ImageSettings.UnlinkedStretch);
 
-                response.Response = Utility.BitmapToBase64(ImageUtility.BitmapFromSource(renderedImage.Image));
+                var bmp = ImageUtility.Convert16BppTo8Bpp(renderedImage.Image);
+                response.Response = Utility.BitmapToBase64(bmp);
                 return response;
             }
             catch (Exception ex)
